@@ -7,11 +7,8 @@ public:
         
         for (auto &el: nums) {
             m[el]++;
-        }
-
-        for (auto &el: m) {
-            if (el.second > n/3) {
-                result.push_back(el.first);
+            if (m[el] == (n/3)+1) {
+                result.push_back(el);
             }
         }
         return result;
