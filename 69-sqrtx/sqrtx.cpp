@@ -1,13 +1,15 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        int ans =0;
+        int start =0, end =x, ans = 0;
 
-        for (int i=1; i<=x; i++) {
-            if ((long long)i*i <= x) {
-                ans = i;
+        while (start <= end) {
+            int mid = start + (end - start) /2;
+            if((long long)mid*mid <= x) {
+                ans = mid;
+                start = mid +1;
             } else {
-                break;
+                end = mid -1;
             }
         }
 
