@@ -24,10 +24,11 @@ public:
         for (int i=0; i<words.size(); i++) {
             result += words[i];
 
-            if (i< words.size()-1) {
+            if (i < words.size()-1) {
                 result += " ";
             }
         }
+
         return result;
     }
 };
