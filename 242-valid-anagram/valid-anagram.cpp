@@ -5,13 +5,18 @@ public:
             return false;
         }
 
-        sort(s.begin(), s.end());
-        sort(t.begin(), t.end());
+        int arr[26] = {0};
 
-        for (int i=0; i<s.size(); i++) {
-            if (s[i] != t[i]) {
-                return false;
-            }
+        for (int i = 0; i<s.size(); i++) {
+            arr[s[i] - 'a']++;
+        }
+
+        for (int i = 0; i<t.size(); i++) {
+            arr[t[i] - 'a']--;
+        }
+
+        for (int &num: arr) {
+            if (num != 0) return false;
         }
         return true;
     }
