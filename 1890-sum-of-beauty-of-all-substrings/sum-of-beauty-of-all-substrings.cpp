@@ -5,16 +5,18 @@ public:
         int n = s.size();
 
         for (int i=0; i<n; i++) {
-            unordered_map<char, int> m;
+            int arr[26] = {0};
             for (int j=i; j<n; j++) {
-                m[s[j]]++;
+                arr[s[j] - 'a']++;
 
                 int minCount = INT_MAX;
                 int maxCount = INT_MIN;
 
-                for (auto &a: m) {
-                    maxCount = max(maxCount, a.second); 
-                    minCount = min(minCount, a.second); 
+                for (int a: arr) {
+                    if (a != 0) {
+                        maxCount = max(maxCount, a); 
+                        minCount = min(minCount, a); 
+                    }
                 }
                 bs += (maxCount - minCount);
             }
