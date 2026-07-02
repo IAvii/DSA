@@ -1,30 +1,21 @@
 class Solution {
 public:
-    vector<int> singleNumber(vector<int>& nums) {        
-        // Array to store the answer
-        vector<int> ans;
-        
-        /* Map to store the elements 
-        and their frequencies */
-        unordered_map <int, int> mpp;
-        
-        // Iterate on the array
-        for(int i=0; i < nums.size(); i++) {
-            mpp[nums[i]]++; // Update the map
+    vector<int> singleNumber(vector<int>& nums) {
+        long XOR = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            XOR ^= nums[i];
         }
-        
-        // Iterate on the map
-        for(auto it : mpp) {
-            // If frequency is 1
-            if(it.second == 1) {
-                /* Add the element to
-                the result array */
-                ans.push_back(it.first);
+
+        int rightBit = XOR & ~(XOR -1);
+        int XOR1 = 0;
+        int XOR2 = 0;
+        for (int i=0; i<nums.size(); i++) {
+            if (nums[i] & rightBit) {
+                XOR1 ^= nums[i];
+            } else {
+                XOR2 ^= nums[i];
             }
-        }   
-        
-        // Return the result after sorting
-        sort(ans.begin(), ans.end());
-        return ans;
+        }  
+        return {XOR1, XOR2};
     }
 };
